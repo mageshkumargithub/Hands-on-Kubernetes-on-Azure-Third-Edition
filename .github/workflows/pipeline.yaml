@@ -34,8 +34,7 @@ jobs:
           subscription-id: c6fdcae4-6424-4303-a950-6f26b97e69ec      
       - name: ACR login
         run: az acr login -n $ACRNAME
-        
-      
+         
       - name: Build and push image
         uses: docker/build-push-action@v2
         with:
