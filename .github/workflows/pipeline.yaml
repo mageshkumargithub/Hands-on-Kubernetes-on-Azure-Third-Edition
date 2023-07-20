@@ -26,31 +26,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Git checkout
         uses: actions/checkout@v2
-name: Run Azure Login with OIDC
-on: [push]
 
-permissions:
-      id-token: write
-      contents: read
-jobs: 
-  build-and-deploy:
-    runs-on: ubuntu-latest
-        - name: Az CLI login
+      - name: az CLI login
         uses: azure/login@v1
         with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  
-      - name: Azure CLI script
-        uses: azure/CLI@v1
-        with:
-          azcliversion: latest
-          inlineScript: |
-            az account show
-            az group list
-
-       - name: ACR login
+      
+      - name: ACR login
         run: az acr login -n $ACRNAME
         
       
