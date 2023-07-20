@@ -31,8 +31,8 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-        run: az account set --subscription c6fdcae4-6424-4303-a950-6f26b97e69ec
-      
+      - name: az account set
+        run: az account set --subscription c6fdcae4-6424-4303-a950-6f26b97e69ec      
       - name: ACR login
         run: az acr login -n $ACRNAME
         
